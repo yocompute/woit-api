@@ -1,5 +1,5 @@
-# woit
-woit is a python 2.7 django backend for angular 1.x website template
+# woit-api
+woit-api is a python 2.7 django backend for angular 1.x website template
 
 ## Quick setup
 
