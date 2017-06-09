@@ -24,7 +24,7 @@ SECRET_KEY = '=7u3_y20wjb#+-lo-$e#y9w$tuqg(sn1^)pub669$9_u8jh82f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.yocompute.com','yocompute.com','www.youcomput.com', 'youcomput.com']
+ALLOWED_HOSTS = ['www.yocompute.com','yocompute.com','www.youcomput.com', 'youcomput.com', 'localhost']
 
 
 # Application definition
@@ -112,6 +112,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('zh-cn', u'简体中文'), # instead of 'zh-CN'
+    ('zh-tw', u'繁體中文'), # instead of 'zh-TW'
+)
 
 TIME_ZONE = 'UTC'
 

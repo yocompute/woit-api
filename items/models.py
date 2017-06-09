@@ -15,8 +15,11 @@ class Item(Model):
         updated = DateTimeField(auto_now=True)
         owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
-        def __str__(self):
-                return self.title
+        # def __str__(self):
+        #     return self.title
+
+        def __unicode__(self):
+            return self.title
 
         def owner_username(self):
             return self.owner.username
