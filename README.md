@@ -25,6 +25,8 @@ mysql> FLUSH PRIVILEGES;
 
 ### Install mysqlclient python 2.7 with wheel (If you cannot install with pip install)
 
+### Change the woit/settings.py to use your mysql credential
+
 ### Migrate Django tables
 ```
 > cd woit
