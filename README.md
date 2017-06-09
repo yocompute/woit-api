@@ -43,8 +43,8 @@ mysql> FLUSH PRIVILEGES;
 > python manage.py runserver
 ```
 
-Open a browser, you can issue command with http://localhost:8000/items, you will see [] in your browser.
-
+Open a browser, type http://localhost:8000/items in address bar, you will see [] in your browser.
+Open a browser, type http://localhost:8000/admin in address bar, and use admin credential you just created to login admin page.
 
 
 ## Set up with virtualenv (Optional)
