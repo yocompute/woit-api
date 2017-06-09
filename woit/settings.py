@@ -24,7 +24,7 @@ SECRET_KEY = '=7u3_y20wjb#+-lo-$e#y9w$tuqg(sn1^)pub669$9_u8jh82f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.yocompute.com','yocompute.com','www.youcomput.com', 'youcomput.com']
 
 
 # Application definition
