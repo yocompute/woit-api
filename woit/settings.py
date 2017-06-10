@@ -113,11 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-LANGUAGES = (
-    ('en', 'English'),
-    ('zh-cn', u'简体中文'), # instead of 'zh-CN'
-    ('zh-tw', u'繁體中文'), # instead of 'zh-TW'
-)
+
 
 TIME_ZONE = 'UTC'
 
