@@ -11,10 +11,22 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import json
+
+APP_ENV = "local"
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+cfg = None
+try:
+    f = open(os.path.join(os.path.dirname(BASE_DIR), 'woit.config.json'), 'r')
+    cfg = json.load(f)
+    f.close()
+except Exception as e:
+    print( e.messages )
+    
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -24,7 +36,7 @@ SECRET_KEY = '=7u3_y20wjb#+-lo-$e#y9w$tuqg(sn1^)pub669$9_u8jh82f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.yocompute.com','yocompute.com','www.youcomput.com', 'youcomput.com', 'localhost']
+ALLOWED_HOSTS = ['www.yocomput.com', 'yocomput.com', 'localhost']
 
 
 # Application definition
@@ -77,16 +89,28 @@ WSGI_APPLICATION = 'woit.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'woit',
-        'USER': 'dbuser',
-        'PASSWORD': 'mypasswd',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+if cfg is not None:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'woit',
+            'USER': cfg["DATABASE"]["USERNAME"],
+            'PASSWORD': cfg["DATABASE"]["PASSWORD"],
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'woit',
+            'USER': 'dbuser',
+            'PASSWORD': 'mypasswd',
+            'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
@@ -136,16 +160,22 @@ CORS_ORIGIN_WHITELIST = (
     'localhost',
     '127.0.0.1',
     'localhost:5001',
-    '127.0.0.1:5001'
+    '127.0.0.1:5001',
+    'yocomput.com',
+    'www.yocomput.com'
 )
 
-CSRF_COOKIE_DOMAIN = 'localhost'
+if APP_ENV == 'local':
+    CSRF_COOKIE_DOMAIN = 'localhost'
+else:
+    CSRF_COOKIE_DOMAIN = 'www.yocomput.com'
 
 # Store CSRF token in the user's session or cookie
 CSRF_USE_SESSIONS = False
 
 CSRF_COOKIE_SECURE = False
-CSRF_TRUSTED_ORIGINS = { 'localhost:5001' }
+
+CSRF_TRUSTED_ORIGINS = { 'localhost:5001', 'yocomput.com', 'www.yocomput.com' }
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
@@ -159,3 +189,4 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # STATICFILES_DIRS = [  
 #     os.path.join(BASE_DIR, 'apps')
 # ]
+
