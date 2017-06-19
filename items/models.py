@@ -6,20 +6,28 @@ from django.db.models import CharField, Model, ForeignKey, DateTimeField, Decima
 TYPES = (('O','Original'), ('M', 'From Market'))
 
 class Item(Model):
-        title = CharField(max_length=255, null=True, blank=True)
-        description = CharField(max_length=1000, null=True, blank=True)
-        code = CharField(max_length=255, null=True, blank=True)
-        type = CharField(max_length=4, choices=TYPES, default='O')
-        price = DecimalField(max_digits=10, decimal_places=2, null=True)
-        created = DateTimeField(auto_now_add=True)
-        updated = DateTimeField(auto_now=True)
-        owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    title = CharField(max_length=255, null=True, blank=True)
+    description = CharField(max_length=1000, null=True, blank=True)
+    code = CharField(max_length=255, null=True, blank=True)
+    dimension = CharField(max_length=255, null=True, blank=True)
+    author = CharField(max_length=255, null=True, blank=True)
 
-        # def __str__(self):
-        #     return self.title
+    type = CharField(max_length=4, choices=TYPES, default='Photo')
+    source = CharField(max_length=4, choices=TYPES, default='Original')
+    price = DecimalField(max_digits=10, decimal_places=2, null=True)
+    n_copies = DecimalField(max_digits=10, decimal_places=2, null=True)
 
-        def __unicode__(self):
-            return self.title
+    fpath = CharField(max_length=1000, null=True, blank=True)
+    created = DateTimeField(auto_now_add=True)
+    updated = DateTimeField(auto_now=True)
 
-        def owner_username(self):
-            return self.owner.username
+    owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+
+    # def __str__(self):
+    #     return self.title
+
+    def __unicode__(self):
+        return self.title
+
+    def owner_username(self):
+        return self.owner.username

@@ -17,11 +17,12 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
 
-from items.views import ItemView, OfferView
+from items.views import ItemView, OfferView, UploadView
 from accounts.views import AccountView, UserView
 
 urlpatterns = [
     url(r'^items', ItemView.as_view()),
+    url(r'^upload', UploadView.as_view(), name="upload"),
     url(r'^accounts', AccountView.as_view()),
     url(r'^login', AccountView.as_view()),
     url(r'^users', UserView.as_view()),
