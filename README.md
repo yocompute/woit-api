@@ -25,7 +25,18 @@ mysql> FLUSH PRIVILEGES;
 
 ### Install mysqlclient python 2.7 with wheel (If you cannot install with pip install)
 
-### Change the woit/settings.py to use your mysql credential
+### Add a woit.config.json with your mysql credential
+Create a woit.config.json file, change username and password of your mysql and place under the woit-api's parent folder with following content:
+```
+{
+	"ENV": "local",
+	"DATABASE":{
+		"USERNAME":"mydbuser",
+		"PASSWORD":"mydbpass"
+	}
+}
+```
+
 
 ### Migrate Django tables
 ```
