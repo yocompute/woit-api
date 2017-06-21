@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import CharField, Model, ForeignKey, DateTimeField, DecimalField
 
-TYPES = (('O','Original'), ('M', 'From Market'))
+TYPES = (('photo','Photo'), ('paint', 'Paint'))
+SOURCES = (('original','Original'), ('market', 'From Market'))
 
 class Item(Model):
     title = CharField(max_length=255, null=True, blank=True)
@@ -12,8 +13,8 @@ class Item(Model):
     dimension = CharField(max_length=255, null=True, blank=True)
     author = CharField(max_length=255, null=True, blank=True)
 
-    type = CharField(max_length=4, choices=TYPES, default='Photo')
-    source = CharField(max_length=4, choices=TYPES, default='Original')
+    type = CharField(max_length=4, choices=TYPES, default='photo')
+    source = CharField(max_length=4, choices=SOURCES, default='original')
     price = DecimalField(max_digits=10, decimal_places=2, null=True)
     n_copies = DecimalField(max_digits=10, decimal_places=2, null=True)
 
