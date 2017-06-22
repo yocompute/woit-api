@@ -74,7 +74,7 @@ Create a woit.config.json file, change username and password of your mysql and p
 ### Migrate Django tables
 ```
 > cd woit-api
-> python manage.py makemigrations items
+> python manage.py makemigrations
 > python manage.py migrate
 ```
 
