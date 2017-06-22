@@ -1,7 +1,34 @@
 # woit-api
-woit-api is a python 2.7 django backend for angular 1.x website template
+woit-api is a django backend for angular 1.x website template
 
-## Quick setup
+
+## Set up with virtualenv (Optional)
+### Install virtualenv
+
+activate virtual env (Windows):
+```
+> cd woit-api
+> virtualenv woit_env
+> woit_env/Scripts/activate.bat
+```
+
+activate virtual env (Linux/Mac):
+```
+> cd woit-api
+> virtualenv woit_env
+> . woit_env/bin/activate
+```
+
+
+Deactivate virtual env (Windows):
+```
+> woit_env/Scripts/deactivate.bat
+```
+
+Deactivate virtual env (Linux/Mac):
+```
+> . woit_env/bin/deactivate
+```
 
 ### Download python plugins
 ```
@@ -40,7 +67,7 @@ Create a woit.config.json file, change username and password of your mysql and p
 
 ### Migrate Django tables
 ```
-> cd woit
+> cd woit-api
 > python manage.py makemigrations items
 > python manage.py migrate
 ```
@@ -52,7 +79,7 @@ Create a woit.config.json file, change username and password of your mysql and p
 
 ### Start
 ```
-> cd woit
+> cd woit-api
 > python manage.py runserver
 ```
 
@@ -60,22 +87,5 @@ Open a browser, type http://localhost:8000/items in address bar, you will see []
 Open a browser, type http://localhost:8000/admin in address bar, and use admin credential you just created to login admin page.
 
 
-## Set up with virtualenv (Optional)
-### Install virtualenv
-Windows:
-Inactivate virtual env:
-```
-> cd woit
-> virtualenv woit_env
-> woit_env/Scripts/activate.bat
-```
 
-Deactivate:
-```
-> woit_env/Scripts/deactivate.bat
-```
-### Download python plugins
-```
-> pip install -r requirements.txt
-```
 
