@@ -49,8 +49,14 @@ mysql> FLUSH PRIVILEGES;
 ```
 
 ### Install mysql python 2.7 connector
+Go to Oracle official and download connector and install
 
 ### Install mysqlclient python 2.7 with wheel (If you cannot install with pip install)
+After install the oracle mysql connector, use pip to install mysqlclient
+```
+> pip install mysqlclient
+```
+
 
 ### Add a woit.config.json with your mysql credential
 Create a woit.config.json file, change username and password of your mysql and place under the woit-api's parent folder with following content:
