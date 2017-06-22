@@ -3,7 +3,7 @@ import os
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.views.generic import View
-from items.models import Item
+from items.models import Item, UploadForm
 
 from django.contrib.auth.models import User
 from django.core import serializers
@@ -38,14 +38,7 @@ class OfferView(View):
         
         # owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
-class UploadForm(forms.Form):
-    file = forms.ImageField()
-    owner_id = forms.CharField(max_length=255)
-    title = forms.CharField(max_length=255)
-    description = forms.CharField(max_length=1000)
-    n_copies = forms.DecimalField(max_digits=10)
-    size = forms.CharField(max_length=255)
-    type = forms.CharField(max_length=20)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class UploadView(View):
