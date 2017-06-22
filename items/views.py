@@ -8,7 +8,7 @@ from items.models import Item, UploadForm
 from django.contrib.auth.models import User
 from django.core import serializers
 
-from django import forms
+
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
@@ -46,27 +46,38 @@ class UploadView(View):
         uForm = UploadForm(req.POST, req.FILES)
         #if uForm.is_valid():
         item = Item()
-        # item.title = uForm.cleaned_data["title"]
-        # item.description = uForm.cleaned_data["description"]
-        # item.author = uForm.cleaned_data["author"]
-        # item.size = uForm.cleaned_data["size"]
-        # item.n_copies = uForm.cleaned_data["n_copies"]
-        # item.type = uForm.cleaned_data["type"]
-        # item.price = uForm.cleaned_data["price"]
+        item.title = uForm.data["title"]
+        item.description = uForm.data["description"]
+        #item.code = uForm.data["code"]
+        
+        item.dimension = uForm.data["dimension"]
+        item.author = uForm.data["author"]
+        item.year = uForm.data["year"]
+        
+        item.type = uForm.data["type"]
+        item.source = uForm.data["source"]
+        item.style = uForm.data["style"]
 
-        # owner_id = uForm.cleaned_data["owner_id"]
-        # item.owner = User.objects.get(id=owner_id)
+        item.price = uForm.data["price"]
+        item.currency = uForm.data["currency"]
+        item.n_copies = uForm.data["n_copies"]
 
-        # BASE_DIR = os.path.dirname(os.path.dirname(__file__)).replace("\\", "/")
-        # folder = "/sample/" + uForm.cleaned_data["username"] + "/"
-        # filename = req.FILES['file'].name
+        item.fpath = uForm.data["fpath"]
+        item.created = uForm.data["created"]
+        item.updated = uForm.data["updated"]
+        owner_id = uForm.data["owner_id"]
+        item.owner = User.objects.get(id=1)#owner_id)
 
-        # # create the folder if it doesn't exist.
-        # try:
-        #     os.mkdir(BASE_DIR + '/sample/')
-        #     os.mkdir(BASE_DIR + folder)
-        # except:
-        #     pass
+        BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+        folder = os.path.join("sample", item.owner.username)
+        filename = req.FILES['file'].name
+
+        # create the folder if it doesn't exist.
+        try:
+            #os.mkdir(os.path.join(BASE_DIR, 'sample'))
+            os.mkdir(os.path.join(BASE_DIR, folder))
+        except:
+            pass
 
         # # save the uploaded file inside that folder.
         # full_filename = BASE_DIR + folder + filename
