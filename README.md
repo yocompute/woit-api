@@ -8,6 +8,10 @@ django 1.10 or 1.11
 
 ## Set up with virtualenv (Optional)
 ### Install virtualenv
+Install virtual env
+```
+> pip install virtualenv
+```
 
 activate virtual env (Windows):
 ```
