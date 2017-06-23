@@ -57,7 +57,7 @@ mysql> FLUSH PRIVILEGES;
 ```
 
 ### Install mysql python connector
-Go to Oracle official and download connector and install
+Go to mysql official and download connector and install, you must install this connector before install mysqlclient
 
 ### Install mysqlclient python with wheel (If you cannot install with pip install)
 The command pip install -r requirement.txt should already include this step
