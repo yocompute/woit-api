@@ -29,3 +29,13 @@ urlpatterns = [
     url(r'^signup', UserView.as_view()),
     url(r'^admin/', admin.site.urls)
 ]
+
+from django.conf import settings
+from django.views.static import serve
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

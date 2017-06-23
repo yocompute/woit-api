@@ -7,7 +7,7 @@ from items.models import Item, UploadForm
 
 from django.contrib.auth.models import User
 from django.core import serializers
-
+from django.conf import settings
 
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -67,11 +67,11 @@ class UploadView(View):
         owner_id = uForm.data["owner_id"]
         item.owner = User.objects.get(id=1)#owner_id)
 
-        BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-        folder = os.path.join("sample", item.owner.username)
+        
+        folder = os.path.join('photos', item.owner.username)
         file = req.FILES.get('file')
         fname = file.name
-        fpath = os.path.join(BASE_DIR, folder)
+        fpath = os.path.join(settings.MEDIA_ROOT, folder)
 
         os.makedirs(fpath)
         # save the uploaded file inside that folder.
@@ -84,5 +84,3 @@ class UploadView(View):
         item.save()
         
         return JsonResponse({'saved': True}, safe=False)
-
-        #return JsonResponse({'saved': False}, safe=False)

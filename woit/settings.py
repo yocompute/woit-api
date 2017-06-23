@@ -190,3 +190,5 @@ PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 #     os.path.join(BASE_DIR, 'apps')
 # ]
 
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
