@@ -1,9 +1,17 @@
 # woit-api
-woit-api is a django backend for angular 1.x website template
+woit-api is a django backend for angular 2.x/ionic website template
 
+
+## Requirement
+python 2.7 or python 3.4
+django 1.10 or 1.11
 
 ## Set up with virtualenv (Optional)
 ### Install virtualenv
+Install virtual env
+```
+> pip install virtualenv
+```
 
 activate virtual env (Windows):
 ```
@@ -48,10 +56,10 @@ mysql> GRANT ALL PRIVILEGES ON * . * TO 'dbuser'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
 
-### Install mysql python 2.7 connector
+### Install mysql python connector
 Go to Oracle official and download connector and install
 
-### Install mysqlclient python 2.7 with wheel (If you cannot install with pip install)
+### Install mysqlclient python with wheel (If you cannot install with pip install)
 After install the oracle mysql connector, use pip to install mysqlclient
 ```
 > pip install mysqlclient
