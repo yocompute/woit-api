@@ -62,7 +62,6 @@ class UploadView(View):
         item.currency = uForm.data["currency"]
         item.n_copies = uForm.data["n_copies"]
 
-        item.fpath = uForm.data["fpath"]
         item.created = uForm.data["created"]
         item.updated = uForm.data["updated"]
         owner_id = uForm.data["owner_id"]
@@ -70,32 +69,20 @@ class UploadView(View):
 
         BASE_DIR = os.path.dirname(os.path.dirname(__file__))
         folder = os.path.join("sample", item.owner.username)
-        filename = req.FILES['file'].name
+        file = req.FILES.get('file')
+        fname = file.name
+        fpath = os.path.join(BASE_DIR, folder)
 
-        # create the folder if it doesn't exist.
-        try:
-            #os.mkdir(os.path.join(BASE_DIR, 'sample'))
-            os.mkdir(os.path.join(BASE_DIR, folder))
-        except:
-            pass
+        os.makedirs(fpath)
+        # save the uploaded file inside that folder.
+        full_filename = os.path.join(fpath, fname)
+        fout = open(full_filename, 'wb+')
+        fout.write(file.read())
+        fout.close()
 
-        # # save the uploaded file inside that folder.
-        # full_filename = BASE_DIR + folder + filename
-        # fout = open(full_filename, 'wb+')
-
-        # file_content = ContentFile( req.FILES['file'].read() )
+        item.fpath = os.path.join(folder, fname)
+        item.save()
         
-        # try:
-        #     # Iterate through the chunks.
-        #     for chunk in file_content.chunks():
-        #         fout.write(chunk)
-        #     fout.close()
-        # except:
-        #     pass
-
-        # item.fpath = os.path.join(folder, filename)
-
-        # item.save()
         return JsonResponse({'saved': True}, safe=False)
 
         #return JsonResponse({'saved': False}, safe=False)
