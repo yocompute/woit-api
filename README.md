@@ -49,10 +49,10 @@ Install mysql and open a shell:
 mysql> CREATE DATABASE woit CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-### Create mysql account 'dbuser'/mypasswd:
+### Create mysql account 'mydbuser'/mypasswd:
 ```
-mysql> CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'mypasswd';
-mysql> GRANT ALL PRIVILEGES ON * . * TO 'dbuser'@'localhost';
+mysql> CREATE USER 'mydbuser'@'localhost' IDENTIFIED BY 'mypasswd';
+mysql> GRANT ALL PRIVILEGES ON * . * TO 'mydbuser'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ```
 
@@ -60,10 +60,7 @@ mysql> FLUSH PRIVILEGES;
 Go to Oracle official and download connector and install
 
 ### Install mysqlclient python with wheel (If you cannot install with pip install)
-After install the oracle mysql connector, use pip to install mysqlclient
-```
-> pip install mysqlclient
-```
+The command pip install -r requirement.txt should already include this step
 
 
 ### Add a woit.config.json with your mysql credential
