@@ -24,8 +24,11 @@ class AccountView(View):
 	def post(self, req, *args, **kwargs):
 		# for login
 		d = json.loads(req.body)
-		r = User.objects.get(Q(username__iexact=d['account']) | Q(email__iexact=d['account']))
-		if r and r.check_password(d['password']):
+		try:
+			r = User.objects.get(Q(username__iexact=d['account']) | Q(email__iexact=d['account']))
+		except: # models.DoesNotExist:
+			r = None
+		if r is not None and r.check_password(d['password']):
 			r.password = ''
 			s = serializers.serialize("json", [r])
 			return JsonResponse({'token':'good', 'users':s }, safe=False)
@@ -42,12 +45,17 @@ class UserView(View):
 	
 	def post(self, req, *args, **kwargs):
 		d = json.loads(req.body)
-		r = User.objects.filter(username__iexact=d['username'])
-		if r:
-			return JsonResponse({'token':''}, safe=False)
+		try:
+			r = User.objects.filter(username__iexact=d['username'])
+		except:
+			r = None
+		if r is None:
+			return JsonResponse({'token':'', 'users':''}, safe=False)
 		else:
-			User.objects.create_user(d['username'], d['email'], d['password']);
-			return JsonResponse({'token':'good'}, safe=False)
+			user = User.objects.create_user(d['username'], d['email'], d['password']);
+			user.password = ''
+			s = serializers.serialize("json", [user])
+			return JsonResponse({'token':'good', 'users':s}, safe=False)
 
 
 
