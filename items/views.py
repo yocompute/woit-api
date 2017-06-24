@@ -65,7 +65,7 @@ class UploadView(View):
         item.created = uForm.data["created"]
         item.updated = uForm.data["updated"]
         owner_id = uForm.data["owner_id"]
-        item.owner = User.objects.get(id=1)#owner_id)
+        item.owner = User.objects.get(id=owner_id)
 
         
         folder = os.path.join('photos', item.owner.username)
@@ -73,7 +73,8 @@ class UploadView(View):
         fname = file.name
         fpath = os.path.join(settings.MEDIA_ROOT, folder)
 
-        os.makedirs(fpath)
+        if not os.path.exists(fpath):
+        	os.makedirs(fpath)
         # save the uploaded file inside that folder.
         full_filename = os.path.join(fpath, fname)
         
