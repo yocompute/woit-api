@@ -76,11 +76,14 @@ class UploadView(View):
         os.makedirs(fpath)
         # save the uploaded file inside that folder.
         full_filename = os.path.join(fpath, fname)
-        fout = open(full_filename, 'wb+')
-        fout.write(file.read())
-        fout.close()
-
-        item.fpath = os.path.join(folder, fname)
-        item.save()
         
+        if not os.path.exists(full_filename):
+	        fout = open(full_filename, 'wb+')
+	        fout.write(file.read())
+	        fout.close()
+
+	        item.fpath = os.path.join(folder, fname)
+	        item.save()
+        else:
+        	return JsonResponse({'saved': False}, safe=False)
         return JsonResponse({'saved': True}, safe=False)
