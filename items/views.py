@@ -14,7 +14,7 @@ from django.utils.decorators import method_decorator
 
 class ItemView(View):
 	def get(self, req, *args, **kwargs):
-		items = Item.objects.select_related('owner')
+		items = Item.objects.select_related('user')
 		s = serializers.serialize("json", list(items))
 		return JsonResponse({'items':s}, safe=False)
 	
@@ -36,7 +36,7 @@ class OfferView(View):
         # created = DateTimeField(auto_now_add=True)
         # updated = DateTimeField(auto_now=True)
         
-        # owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+        # user = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
 
 
@@ -48,27 +48,19 @@ class UploadView(View):
         item = Item()
         item.title = uForm.data["title"]
         item.description = uForm.data["description"]
-        #item.code = uForm.data["code"]
-        
         item.dimension = uForm.data["dimension"]
         item.author = uForm.data["author"]
         item.year = uForm.data["year"]
-        
         item.type = uForm.data["type"]
         item.source = uForm.data["source"]
         item.style = uForm.data["style"]
-
-        item.price = uForm.data["price"]
-        item.currency = uForm.data["currency"]
         item.n_copies = uForm.data["n_copies"]
-
         item.created = uForm.data["created"]
         item.updated = uForm.data["updated"]
-        owner_id = uForm.data["owner_id"]
-        item.owner = User.objects.get(id=owner_id)
-
+        user_id = uForm.data["user_id"]
+        item.user = User.objects.get(id=user_id)
         
-        folder = os.path.join('photos', item.owner.username)
+        folder = os.path.join('photos', item.user.username)
         file = req.FILES.get('file')
         fname = file.name
         fpath = os.path.join(settings.MEDIA_ROOT, folder)
