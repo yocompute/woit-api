@@ -36,7 +36,7 @@ SECRET_KEY = '=7u3_y20wjb#+-lo-$e#y9w$tuqg(sn1^)pub669$9_u8jh82f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.yocomput.com', 'yocomput.com', 'localhost']
+ALLOWED_HOSTS = ['www.yocomput.com', 'yocomput.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -58,13 +58,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware', # Must before CommonMiddleware 
+    'corsheaders.middleware.CorsMiddleware', # Must before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
 
 ROOT_URLCONF = 'woit.urls'
@@ -164,6 +163,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:5001',
     '127.0.0.1:5001',
     'yocomput.com',
+    '127.0.0.1:8000',
     'www.yocomput.com'
 )
 
@@ -177,7 +177,7 @@ CSRF_USE_SESSIONS = False
 
 CSRF_COOKIE_SECURE = False
 
-CSRF_TRUSTED_ORIGINS = { 'localhost:5001', 'yocomput.com', 'www.yocomput.com' }
+CSRF_TRUSTED_ORIGINS = {'localhost', 'yocomput.com', 'www.yocomput.com', '127.0.0.1'}
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
