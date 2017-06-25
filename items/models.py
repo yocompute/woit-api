@@ -37,6 +37,17 @@ class Item(Model):
     def owner_username(self):
         return self.owner.username
 
+
+OWNER_STATUS = (('active','Active'), ('inactive', 'Inactive'))
+
+class OwnerHistory(Model):
+    status = CharField(max_length=16, choices=OWNER_STATUS, default='active')
+    created = DateTimeField(auto_now_add=True)
+    updated = DateTimeField(auto_now_add=True)
+
+    item = ForeignKey(Item, null=True, blank=True, on_delete=models.CASCADE)
+    owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+
 class UploadForm(forms.Form):
     file = forms.ImageField()
     title = CharField(max_length=255, null=True, blank=True)
@@ -57,3 +68,4 @@ class UploadForm(forms.Form):
     updated = DateTimeField(auto_now=True)
 
     owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+
