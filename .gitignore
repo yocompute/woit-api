@@ -6,3 +6,5 @@
 /bids/migrations/__pycache__
 /orders/__pycache__
 /orders/migrations/__pycache__
+/woit_env
+/media
