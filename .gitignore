@@ -2,3 +2,7 @@
 /items/migrations
 /items/__pycache__
 /accounts/__pycache__
+/bids/__pycache__
+/bids/migrations/__pycache__
+/orders/__pycache__
+/orders/migrations/__pycache__
