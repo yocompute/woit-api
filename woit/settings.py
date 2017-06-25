@@ -43,6 +43,8 @@ ALLOWED_HOSTS = ['www.yocomput.com', 'yocomput.com', 'localhost']
 
 INSTALLED_APPS = [
     'items.apps.ItemsConfig',
+    'orders.apps.OrdersConfig',
+    'bids.apps.BidsConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
