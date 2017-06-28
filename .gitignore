@@ -148,3 +148,4 @@ Temporary Items
 
 # End of https://www.gitignore.io/api/django,python
 /py3
+/keys/migrations
