@@ -3,12 +3,11 @@
 /items/__pycache__
 /accounts/__pycache__
 /bids/__pycache__
-/bids/migrations/__pycache__
+/bids/migrations
 /orders/__pycache__
-/orders/migrations/__pycache__
+/orders/migrations
 /woit_env
 /media
-
 
 # Created by https://www.gitignore.io/api/django,python
 
