@@ -19,8 +19,10 @@ from django.views.generic import TemplateView
 
 from items.views import ItemView, OfferView, UploadView
 from accounts.views import AccountView, UserView
+from keys.views import KeyView
 
 urlpatterns = [
+    url(r'^keys', KeyView.as_view()),
     url(r'^items', ItemView.as_view()),
     url(r'^upload', UploadView.as_view(), name="upload"),
     url(r'^accounts', AccountView.as_view()),

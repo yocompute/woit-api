@@ -3,6 +3,8 @@ from django import forms
 from django.db import models
 from django.db.models import CharField, Model, ForeignKey, DateTimeField, DecimalField
 
+
+
 TYPES = (('photo','Photo'), ('paint', 'Paint'))
 SOURCES = (('original','Original'), ('market', 'From Market'))
 CURRENCIES = (('usd','USD'), ('cad', 'CAD'), ('cny','CNY'))
@@ -37,15 +39,19 @@ class Item(Model):
 
 # products is a table to represent selling list
 class Product(Model):
-    code = CharField(max_length=255, null=True, blank=True)
     price = DecimalField(max_digits=10, decimal_places=3, null=True)
     currency = CharField(max_length=16, choices=CURRENCIES, default='usd')
     status = CharField(max_length=16, choices=STATUS, default='active')
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now_add=True)
 
+    # The owner must be current owner
     owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     item = ForeignKey(Item, null=True, blank=True, on_delete=models.CASCADE)
+
+
+
+
     
 class Ownership(Model):
     source = CharField(max_length=32, choices=SOURCES, default='original')
@@ -56,7 +62,7 @@ class Ownership(Model):
     status = CharField(max_length=16, choices=STATUS, default='active')
     created = DateTimeField(auto_now_add=True)
     updated = DateTimeField(auto_now_add=True)
-
+    # To record the history
     product = ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
     owner = ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 

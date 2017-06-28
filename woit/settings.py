@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'items.apps.ItemsConfig',
     'orders.apps.OrdersConfig',
     'bids.apps.BidsConfig',
+    'keys.apps.KeysConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

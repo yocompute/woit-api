@@ -12,6 +12,8 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
+
+
 class ItemView(View):
 	def get(self, req, *args, **kwargs):
 		items = Item.objects.select_related('user')
